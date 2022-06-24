@@ -13,7 +13,7 @@ require 'config/config.php';
   <meta content="Themesdesign" name="author" />
 
   <!-- favicon -->
-  <link rel="shortcut icon" href="<?= base_url() ?>/assets/dist/img/logo.png" />
+  <link rel="shortcut icon" href="<?= base_url() ?>/assets/dist/img/pt.png" />
 
   <!-- Bootstrap css-->
   <link href="<?= base_url() ?>/assets/usertemp/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -103,7 +103,7 @@ require 'config/config.php';
           <!--end col-->
           <div class="col-lg-6 offset-xl-1">
             <div class="mt-lg-0 mt-5">
-              <img src="<?= base_url() ?>/assets/dist/img/logo.png" alt="home04" class="home-img">
+              <img src="<?= base_url() ?>/assets/dist/img/stli.png" alt="home04" class="home-img">
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ require 'config/config.php';
 
 
   <!-- START CTA -->
-  <section class="bg-cta" style="background-image: url('<?= base_url() ?>/assets/usertemp/images/bg-cta01.jpg');">
+  <section class="bg-cta" style="background-image: url('<?= base_url() ?>/assets/dist/img/bg5.jpeg');">
     <div class="bg-overlay"></div>
     <div class="container">
       <div class="row justify-content-center">
@@ -192,7 +192,7 @@ require 'config/config.php';
         <div class="col-lg-4 col-md-6">
           <div class="card blog-box border-0 mt-4">
             <div class="blog-img position-relative">
-              <img src="<?= base_url() ?>/assets/usertemp/images/blog/blog-01.jpg" alt="Blog" class="img-fluid rounded">
+              <img src="<?= base_url() ?>/assets/dist/img/bg1.jpg" alt="Blog" class="img-fluid rounded">
               <div class="bg-overlay rounded"></div>
               <div class="author">
                 <h6 class="fs-16 mb-0"><i class="mdi mdi-account-outline fs-17 align-middle me-1"></i>
@@ -201,20 +201,12 @@ require 'config/config.php';
                   2021</small>
               </div>
             </div>
-            <div class="mt-3">
-              <a href="#" class="primary-link">
-                <h6 class="fs-20">Doing a cross country road trip</h6>
-              </a>
-              <p class="text-muted">We craft digital, graphic and dimensional thinking, to create category
-                leading brand.</p>
-              
-            </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card blog-box border-0 mt-4">
             <div class="blog-img position-relative">
-              <img src="<?= base_url() ?>/assets/usertemp/images/blog/blog-02.jpg" alt="Blog" class="img-fluid rounded">
+              <img src="<?= base_url() ?>/assets/dist/img/bg2.jpeg" alt="Blog" class="img-fluid rounded">
               <div class="bg-overlay rounded"></div>
               <div class="author">
                 <h6 class="fs-16 mb-0"><i class="mdi mdi-account-outline fs-17 align-middle me-1"></i>
@@ -223,20 +215,12 @@ require 'config/config.php';
                   2021</small>
               </div>
             </div>
-            <div class="mt-3">
-              <a href="#" class="primary-link">
-                <h6 class="fs-20">New exhibition at our Museum</h6>
-              </a>
-              <p class="text-muted">Even the all-powerful Pointing has no control about the blind almost
-                unorthographic.</p>
-              
-            </div>
           </div>
         </div>
         <div class="col-lg-4 col-md-6">
           <div class="card blog-box border-0 mt-4">
             <div class="blog-img position-relative">
-              <img src="<?= base_url() ?>/assets/usertemp/images/blog/blog-03.jpg" alt="Blog" class="img-fluid rounded">
+              <img src="<?= base_url() ?>/assets/dist/img/bg3.jpeg" alt="Blog" class="img-fluid rounded">
               <div class="bg-overlay rounded"></div>
               <div class="author">
                 <h6 class="fs-16 mb-0"><i class="mdi mdi-account-outline fs-17 align-middle me-1"></i>
@@ -245,13 +229,33 @@ require 'config/config.php';
                   2021</small>
               </div>
             </div>
-            <div class="mt-3">
-              <a href="#" class="primary-link">
-                <h6 class="fs-20">Design your apps in your own way</h6>
-              </a>
-              <p class="text-muted">Pityful a rethoric question ran over her cheek, then she continued her
-                way.</p>
-             
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card blog-box border-0 mt-4">
+            <div class="blog-img position-relative">
+              <img src="<?= base_url() ?>/assets/dist/img/bg4.jpeg" alt="Blog" class="img-fluid rounded">
+              <div class="bg-overlay rounded"></div>
+              <div class="author">
+                <h6 class="fs-16 mb-0"><i class="mdi mdi-account-outline fs-17 align-middle me-1"></i>
+                  Ruben Reed</h6>
+                <small><i class="mdi mdi-clock-outline fs-17 align-middle me-1"></i> 25th July
+                  2021</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="card blog-box border-0 mt-4">
+            <div class="blog-img position-relative">
+              <img src="<?= base_url() ?>/assets/dist/img/bg5.jpeg" alt="Blog" class="img-fluid rounded">
+              <div class="bg-overlay rounded"></div>
+              <div class="author">
+                <h6 class="fs-16 mb-0"><i class="mdi mdi-account-outline fs-17 align-middle me-1"></i>
+                  Ruben Reed</h6>
+                <small><i class="mdi mdi-clock-outline fs-17 align-middle me-1"></i> 25th July
+                  2021</small>
+              </div>
             </div>
           </div>
         </div>
@@ -336,7 +340,7 @@ require 'config/config.php';
           </div>
           <div class="ratio ratio-16x9">
             <video id="VisaChipCardVideo" class="video-box" controls>
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              <source src="https://youtu.be/nq2R3bKEtpE" type="video/mp4">
             </video>
           </div>
         </div>
