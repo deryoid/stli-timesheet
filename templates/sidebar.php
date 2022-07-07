@@ -229,6 +229,14 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#slipgaji" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Slip Gaji Manpower</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
 
@@ -514,6 +522,57 @@
                 <input type="date" name="tgl2" class="form-control" required="" value="<?php echo $date_now; ?>">
               </div>
             </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- end tanggal -->
+
+
+      </div><!-- modal body -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL ABsensi -->
+<div id="slipgaji" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title">Laporan Slip Gaji Manpower</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- tanggal -->
+
+        <form method="POST" target="blank" action="<?= base_url('admin/gaji/print') ?>">
+          <div class="row">
+            <div class="col-md-12">
+              <label> Nama</label>
+              <div class="form-group">
+                <select class="form control select2" name="pekerjaan" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $pekerjaan = $koneksi->query("SELECT * FROM pekerjaan AS p
+                                                    LEFT JOIN manpower AS m ON p.id_manpower = m.id_manpower");
+                  foreach ($pekerjaan as $item) {
+                  ?>
+                    <option value="<?= $item['id_pekerjaan'] ?>"> <?= $item['nama'] ?></option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+
             <div class="col-md-2">
               <div class="form-group">
                 <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
