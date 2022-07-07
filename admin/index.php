@@ -70,7 +70,7 @@ include '../templates/head.php';
               <div class="card">
                 <div class="card-body">
                   <center>
-                  
+
                   </center>
                 </div>
               </div>
