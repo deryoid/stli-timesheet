@@ -29,13 +29,13 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Petugas</h1>
+                            <h1 class="m-0 text-dark">Jabatan</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Petugas</li>
+                                <li class="breadcrumb-item active">Jabatan</li>
                                 <li class="breadcrumb-item active">Tambah Data</li>
                             </ol>
                         </div><!-- /.col -->
@@ -53,52 +53,32 @@ include '../../templates/head.php';
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- Horizontal Form -->
-                                <div class="card card-primary">
+                                <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Petugas</h3>
+                                        <h3 class="card-title">Jabatan</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
 
-                                        <div class="form-group row">
-                                            <label class="col-sm-1 col-form-label">Username</label>
-                                            <div class="col-sm-4">
-                                                <input type="text" class="form-control" name="username" required="">
-                                            </div>
-                                        </div>
 
                                         <div class="form-group row">
-                                            <label class="col-sm-1 col-form-label">Password</label>
-                                            <div class="col-sm-4">
-                                                <input type="password" class="form-control form-pass" name="password" required="">
-                                                <div class="border-checkbox-group border-checkbox-group-primary">
-                                                    <small>
-                                                        <input class="border-checkbox form-cek" type="checkbox" id="checkbox1">
-                                                        <label class="border-checkbox-label" for="checkbox1">Tampilkan Password</label>
-                                                    </small>
-                                                </div>
+                                            <label for="" class="col-sm-2 col-form-label">Nama Jabatan</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="nama_jabatan">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-1 col-form-label">Role</label>
-                                            <div class="col-sm-3">
-                                                <select class="form-control select2" data-placeholder="Pilih Role" id="role" name="role" required="">
-                                                    <option value="">-Pilih-</option>
-                                                    <option value="Administrator">Administrator</option>
-                                                    <option value="HO/HOD">HO/HOD</option>
-                                                    <option value="OPR/DRIVER">OPR/DRIVER</option>
-                                                </select>
+                                            <label for="" class="col-sm-2 col-form-label">Gaji Pokok</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" name="gaji_pokok">
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                     <!-- /.card-body -->
 
                                     <div class="card-footer" style="background-color: white;">
-                                        <a href="<?= base_url('admin/user/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
+                                        <a href="<?= base_url('admin/jabatan/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
                                         <button type="submit" name="submit" class="btn bg-gradient-primary float-right mr-2"><i class="fa fa-save"> Simpan</i></button>
                                     </div>
                                     <!-- /.card-footer -->
@@ -130,41 +110,30 @@ include '../../templates/head.php';
     <!-- jQuery -->
     <?php include_once "../../templates/script.php"; ?>
 
-    <script>
-        $(document).ready(function() {
-            $('.form-cek').click(function() {
-                if ($(this).is(':checked')) {
-                    $('.form-pass').attr('type', 'text');
-                } else {
-                    $('.form-pass').attr('type', 'password');
-                }
-            });
 
-        });
-    </script>
     <?php
     if (isset($_POST['submit'])) {
-        $username = $_POST['username'];
-        $password = md5($_POST['password']);
-        $role  = $_POST['role'];
+        $nama_jabatan         = $_POST['nama_jabatan'];
+        $gaji_pokok           = $_POST['gaji_pokok'];
 
-        $submit = $koneksi->query("INSERT INTO user VALUES (
-        NULL,
-        '$username', 
-        '$password', 
-        '$role')");
 
+
+        $submit = $koneksi->query("INSERT INTO jabatan VALUES (
+            NULL,
+            '$nama_jabatan',
+            '$gaji_pokok'
+            )");
+        // var_dump($submit, $koneksi->error);
+        // die();
+        
         if ($submit) {
-            if ($role == "Teknisi") {
-                $tkn =  $koneksi->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1")->fetch_array();
-                $koneksi->query("INSERT INTO petugas (id_user) VALUES ('$tkn[id_user]')");
-            }
-            $_SESSION['pesan'] = "Data Berhasil Ditambahkan";
-            echo "<script>window.location.replace('../user/');</script>";
+            $_SESSION['pesan'] = "Data Ditambahkan";
+            echo "<script>window.location.replace('../jabatan/');</script>";
         }
     }
-
     ?>
+
+
 </body>
 
 </html>
