@@ -266,7 +266,7 @@
 
 
             <li class="nav-item">
-              <a href="<?= base_url('admin/manpower') ?>" class="nav-link">
+              <a href="<?= base_url('homes/manpower') ?>" class="nav-link">
                 <i class="nav-icon fas fa-user-alt"></i>
                 <p>
                   Manpower
@@ -274,7 +274,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="<?= base_url('admin/time') ?>" class="nav-link">
+              <a href="<?= base_url('homes/time') ?>" class="nav-link">
                 <i class="nav-icon fas fa-business-time"></i>
                 <p>
                   Timesheet
@@ -283,14 +283,14 @@
             </li>
 
             <li class="nav-item">
-              <a href="<?= base_url('admin/gaji') ?>" class="nav-link">
+              <a href="<?= base_url('homes/gaji') ?>" class="nav-link">
                 <i class="nav-icon fas fa-comments-dollar"></i>
                 <p>
                   Gaji
                 </p>
               </a>
             </li>
-            <li class="nav-item has-treeview">
+            <li class="nav-item has-treeview active">
               <a class="nav-link">
                 <i class="nav-icon fas fa-print"></i>
                 <p>
