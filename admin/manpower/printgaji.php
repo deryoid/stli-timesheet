@@ -44,7 +44,7 @@ $bln = array(
     </p>
     <p align="center">
         <b>
-            <font size="5">Laporan Data Manpower</font> <br>
+            <font size="5">Laporan Data Gaji</font> <br>
             <hr size="2px" color="black">
         </b>
     </p>
@@ -56,12 +56,8 @@ $bln = array(
                     <thead class="">
                         <tr align="center">
                             <th>No</th>
-                            <th>NIK</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>No Hp</th>
-                            <th>Email</th>
-                            <th>No Rekening</th>
+                            <th>Gaji</th>
                         </tr>
                     </thead>
                     <?php
@@ -74,15 +70,22 @@ $bln = array(
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nik'] ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_jabatan'] ?></td>
-                                <td><?= $row['no_hp'] ?></td>
-                                <td><?= $row['email'] ?></td>
-                                <td><?= $row['no_rekening'] ?></td>
+                                <td align="center"><?= $row['gaji_pokok'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>
+                    <tr>
+                        <th colspan="2" align="left"> Total :</th>
+                        <th>
+                            <?php
+                            $hasil = $koneksi->query("SELECT SUM(gaji_pokok) AS total FROM manpower AS mp
+                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
+                             ORDER BY mp.id_manpower DESC
+                            ")->fetch_array();
+                            echo $hasil['total'];
+                            ?></th>
+                    </tr>
                 </table>
             </div>
         </div>

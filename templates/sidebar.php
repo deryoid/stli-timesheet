@@ -56,7 +56,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?= base_url('admin/timesheet') ?>" class="nav-link">
+            <a href="<?= base_url('admin/time') ?>" class="nav-link">
               <i class="nav-icon fas fa-business-time"></i>
               <p>
                 Timesheet
@@ -72,7 +72,7 @@
               </p>
             </a>
           </li>
-      
+
 
 
           <li class="nav-item has-treeview">
@@ -123,15 +123,112 @@
                 </a>
               </li>
             </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/project') ?>" class="nav-link">
+                  <i class="fas fa-circle nav-icon"></i>
+                  <p>Project</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/presensi') ?>" class="nav-link">
+                  <i class="fas fa-circle nav-icon"></i>
+                  <p>Presensi</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/pph') ?>" class="nav-link">
+                  <i class="fas fa-circle nav-icon"></i>
+                  <p>P2H</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/pekerjaan') ?>" class="nav-link">
+                  <i class="fas fa-circle nav-icon"></i>
+                  <p>Pekerjaan</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="<?= base_url('admin/laporan') ?>" class="nav-link">
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-print"></i>
               <p>
                 Laporan
+                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/manpower/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Manpower</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/time/printall') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet <br>Keseluruhan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#project" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Project</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/pph/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Data Pemeriksaan <br> dan Pemeliharaan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#absensi" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Absensi</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('admin/manpower/printgaji') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Gaji</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#timesheetlambung" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet Perlambung</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#timesheet" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet Manpower</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
 
@@ -201,3 +298,237 @@
   </div>
   <!-- /.sidebar -->
 </aside>
+
+<!-- Modal -->
+<!-- MODAL Timesheet -->
+<div id="timesheet" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title">Laporan Timesheet</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- tanggal -->
+
+        <form method="POST" target="blank" action="<?= base_url('admin/time/print.php') ?>">
+          <div class="row">
+            <div class="col-md-12">
+              <label> Nama</label>
+              <div class="form-group">
+                <select class="form control select2" name="manpower" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $nama = $koneksi->query("SELECT * FROM manpower ORDER BY id_manpower DESC");
+                  foreach ($nama as $item) {
+                  ?>
+                    <option value="<?= $item['id_manpower'] ?>"> <?= $item['nama'] ?></option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <input type="date" name="tgl1" class="form-control" required="" value="<?php echo $date_old; ?>">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <input type="date" name="tgl2" class="form-control" required="" value="<?php echo $date_now; ?>">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- end tanggal -->
+
+
+      </div><!-- modal body -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PRIOJECT -->
+<div id="project" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title">Laporan PROJECT</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- tanggal -->
+
+        <form method="POST" target="blank" action="<?= base_url('admin/project/print') ?>">
+          <div class="row">
+            <div class="col-md-12">
+              <label> Lokasi</label>
+              <div class="form-group">
+                <select class="form control select2" name="lokasi" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $lokasi = $koneksi->query("SELECT * FROM lokasi ORDER BY id_lokasi DESC");
+                  foreach ($lokasi as $item) {
+                  ?>
+                    <option value="<?= $item['id_lokasi'] ?>"> <?= $item['nama_lokasi'] ?></option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label> Unit</label>
+              <div class="form-group">
+                <select class="form control select2" name="unit" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $unit = $koneksi->query("SELECT * FROM unit ORDER BY id_unit DESC");
+                  foreach ($unit as $item) {
+                  ?>
+                    <option value="<?= $item['id_unit'] ?>"> <?= $item['nama_unit'] ?></option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="form-group">
+              <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
+            </div>
+          </div>
+      </div>
+      </form>
+      <!-- end tanggal -->
+
+
+    </div><!-- modal body -->
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- MODAL ABsensi -->
+<div id="absensi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title">Laporan Absensi</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- tanggal -->
+
+        <form method="POST" target="blank" action="<?= base_url('admin/presensi/print') ?>">
+          <div class="row">
+            <div class="col-md-12">
+              <label> Nama</label>
+              <div class="form-group">
+                <select class="form control select2" name="manpower" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $nama = $koneksi->query("SELECT * FROM manpower AS m
+                  LEFT JOIN jabatan as j ON m.id_jabatan = j.id_jabatan
+                  ");
+                  foreach ($nama as $item) {
+                  ?>
+                    <option value="<?= $item['id_manpower'] ?>"> <?= $item['nama'] ?> (<?= $item['nama_jabatan'] ?>)</option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-2">
+              <div class="form-group">
+                <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- end tanggal -->
+
+
+      </div><!-- modal body -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL Timesheet -->
+<div id="timesheetlambung" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+        <h4 class="modal-title">Laporan Timesheet Per Lambung</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- tanggal -->
+
+        <form method="POST" target="blank" action="<?= base_url('admin/time/printlambung.php') ?>">
+          <div class="row">
+            <div class="col-md-12">
+              <label> Lambung</label>
+              <div class="form-group">
+                <select class="form control select2" name="lambung" data-placeholder="Pilih" style="width: 100%;" required>
+                  <option value=""></option>
+                  <?php
+                  $nama = $koneksi->query("SELECT * FROM lambung ORDER BY id_lambung DESC");
+                  foreach ($nama as $item) {
+                  ?>
+                    <option value="<?= $item['id_lambung'] ?>"> <?= $item['nama_lambung'] ?></option>
+
+                  <?php } ?>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <input type="date" name="tgl1" class="form-control" required="" value="<?php echo $date_old; ?>">
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <input type="date" name="tgl2" class="form-control" required="" value="<?php echo $date_now; ?>">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <!-- end tanggal -->
+
+
+      </div><!-- modal body -->
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+      </div>
+    </div>
+  </div>
+</div>

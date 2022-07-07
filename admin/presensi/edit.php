@@ -2,7 +2,7 @@
 require '../../config/config.php';
 require '../../config/koneksi.php';
 $id   = $_GET['id'];
-$data = $koneksi->query("SELECT * FROM manpower WHERE id_manpower = '$id'");
+$data = $koneksi->query("SELECT * FROM presensi WHERE id_presensi = '$id'");
 $row  = $data->fetch_array();
 ?>
 <!DOCTYPE html>
@@ -32,13 +32,13 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Ubah Manpower</h1>
+                            <h1 class="m-0 text-dark">Ubah Presensi</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Data Master</li>
-                                <li class="breadcrumb-item active">Manpower</li>
+                                <li class="breadcrumb-item active">Presensi</li>
                                 <li class="breadcrumb-item active">Ubah Data</li>
                             </ol>
                         </div><!-- /.col -->
@@ -58,56 +58,57 @@ include '../../templates/head.php';
                                 <!-- Horizontal Form -->
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Manpower</h3>
+                                        <h3 class="card-title">Presensi</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
                                     <div class="card-body" style="background-color: white;">
 
-
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">NIK</label>
+                                            <label for="" class="col-sm-2 col-form-label">Manpower</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nik" value="<?= $row['nik']; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Nama</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="nama" value="<?= $row['nama']; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Jabatan</label>
-                                            <div class="col-sm-10">
-                                                <select class="form control select2" name="id_jabatan" data-placeholder="Pilih" style="width: 100%;" required>
+                                                <select class="form control select2" name="id_manpower" data-placeholder="Pilih" style="width: 100%;" required>
                                                     <option value=""></option>
                                                     <?php
-                                                    $jabatan = $koneksi->query("SELECT * FROM jabatan ORDER BY id_jabatan DESC");
-                                                    foreach ($jabatan as $item) {
+                                                    $manpower = $koneksi->query("SELECT * FROM manpower ORDER BY id_manpower DESC");
+                                                    foreach ($manpower as $item) {
                                                     ?>
-                                                        <option value="<?= $item['id_jabatan'] ?>" <?= $row['id_jabatan'] == $item['id_jabatan'] ? "selected" : "" ?>> <?= $item['nama_jabatan'] ?></option>
+                                                        <option value="<?= $item['id_manpower'] ?>" <?= $row['id_manpower'] == $item['id_manpower'] ? "selected" : "" ?>> <?= $item['nama'] ?></option>
 
                                                     <?php } ?>
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Nomor Hp</label>
+                                            <label for="" class="col-sm-2 col-form-label">Tanggal Presensi</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="no_hp" value="<?= $row['no_hp']; ?>">
+                                                <input type="date" class="form-control" name="tanggal_presensi" value="<?= $row['tanggal_presensi'] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Email</label>
+                                            <label for="" class="col-sm-2 col-form-label">Absensi</label>
                                             <div class="col-sm-10">
-                                                <input type="email" class="form-control" name="email" value="<?= $row['email']; ?>">
+                                                <select class="form-control select2" data-placeholder="Pilih " id="absensi" name="absensi" required="">
+                                                    <option value="Hadir" <?php if ($row['absensi'] == "Hadir") {
+                                                                                echo "selected";
+                                                                            } ?>>Hadir</option>
+                                                    <option value="Alpa" <?php if ($row['absensi'] == "Alpa") {
+                                                                                echo "selected";
+                                                                            } ?>>Alpa</option>
+                                                    <option value="Ijin" <?php if ($row['absensi'] == "Ijin") {
+                                                                                echo "selected";
+                                                                            } ?>>Ijin</option>
+                                                    <option value="Sakit" <?php if ($row['absensi'] == "Sakit") {
+                                                                                echo "selected";
+                                                                            } ?>>Sakit</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-2 col-form-label">Nomor Rekening</label>
+                                            <label for="" class="col-sm-2 col-form-label">Keterangan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="no_rekening" value="<?= $row['no_rekening']; ?>">
+                                                <input type="text" class="form-control" name="keterangan" value="<?= $row['keterangan'] ?>">
                                             </div>
                                         </div>
 
@@ -115,7 +116,7 @@ include '../../templates/head.php';
                                     <!-- /.card-body -->
 
                                     <div class="card-footer" style="background-color: white;">
-                                        <a href="<?= base_url('admin/manpower/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
+                                        <a href="<?= base_url('admin/presensi/') ?>" class="btn bg-gradient-secondary float-right"><i class="fa fa-arrow-left"> Batal</i></a>
                                         <button type="submit" name="submit" class="btn bg-gradient-primary float-right mr-2"><i class="fa fa-save"> Ubah</i></button>
                                     </div>
                                     <!-- /.card-footer -->
@@ -150,27 +151,23 @@ include '../../templates/head.php';
 
     <?php
     if (isset($_POST['submit'])) {
-        $nik         = $_POST['nik'];
-        $nama         = $_POST['nama'];
-        $id_jabatan         = $_POST['id_jabatan'];
-        $no_hp         = $_POST['no_hp'];
-        $email         = $_POST['email'];
-        $no_rekening         = $_POST['no_rekening'];
+        $id_manpower         = $_POST['id_manpower'];
+        $tanggal_presensi         = $_POST['tanggal_presensi'];
+        $absensi         = $_POST['absensi'];
+        $keterangan         = $_POST['keterangan'];
 
-        $submit = $koneksi->query("UPDATE manpower SET  
-                            nik = '$nik',
-                            nama = '$nama',
-                            id_jabatan = '$id_jabatan',
-                            no_hp = '$no_hp',
-                            email = '$email',
-                            no_rekening = '$no_rekening'
+        $submit = $koneksi->query("UPDATE presensi SET  
+                            id_manpower = '$id_manpower',
+                            tanggal_presensi = '$tanggal_presensi',
+                            absensi = '$absensi',
+                            keterangan = '$keterangan'
                             WHERE 
-                            id_manpower = '$id'");
+                            id_presensi = '$id'");
         // var_dump($submit,$koneksi->error);
         // die();
         if ($submit) {
             $_SESSION['pesan'] = "Data Ditambahkan";
-            echo "<script>window.location.replace('../manpower/');</script>";
+            echo "<script>window.location.replace('../presensi/');</script>";
         }
     }
 

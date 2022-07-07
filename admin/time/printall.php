@@ -4,7 +4,6 @@ include '../../config/koneksi.php';
 
 $no = 1;
 
-
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -44,7 +43,8 @@ $bln = array(
     </p>
     <p align="center">
         <b>
-            <font size="5">Laporan Data Manpower</font> <br>
+            <font size="5">Laporan Data Timesheet Keseluruhan</font> <br>
+
             <hr size="2px" color="black">
         </b>
     </p>
@@ -56,30 +56,35 @@ $bln = array(
                     <thead class="">
                         <tr align="center">
                             <th>No</th>
-                            <th>NIK</th>
+                            <th>Tanggal</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>No Hp</th>
-                            <th>Email</th>
-                            <th>No Rekening</th>
+                            <th>Lambung</th>
+                            <th>Shift</th>
+                            <th>HM Awal</th>
+                            <th>HM Akhir</th>
+                            <th>Jumlah</th>
+                            <th>Job</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                    $data = $koneksi->query("SELECT * FROM timesheet AS ts
+                                            LEFT JOIN manpower AS mp ON ts.id_manpower = mp.id_manpower
+                                            LEFT JOIN lambung AS l ON ts.id_lambung = l.id_lambung
+                                            ");
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nik'] ?></td>
+                                <td><?= $row['tanggal_timesheet'] ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_jabatan'] ?></td>
-                                <td><?= $row['no_hp'] ?></td>
-                                <td><?= $row['email'] ?></td>
-                                <td><?= $row['no_rekening'] ?></td>
+                                <td><?= $row['nama_lambung'] ?></td>
+                                <td><?= $row['shift'] ?></td>
+                                <td><?= $row['hm_awal'] ?></td>
+                                <td><?= $row['hm_akhir'] ?></td>
+                                <td><?= $row['jumlah'] ?></td>
+                                <td><?= $row['job'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>
@@ -110,6 +115,7 @@ $bln = array(
         </h5>
 
     </div>
+
 
 </body>
 

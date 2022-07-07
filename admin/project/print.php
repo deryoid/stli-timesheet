@@ -4,7 +4,10 @@ include '../../config/koneksi.php';
 
 $no = 1;
 
-
+if (isset($_POST['cetak'])) {
+    $lokasi = $_POST['lokasi'];
+    $unit = $_POST['unit'];
+}
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -19,6 +22,14 @@ $bln = array(
     '11' => 'November',
     '12' => 'Desember'
 );
+$names = $koneksi->query("SELECT * FROM project AS p
+LEFT JOIN lokasi AS l ON p.id_lokasi = l.id_lokasi
+LEFT JOIN unit AS u ON p.id_unit = u.id_unit
+LEFT JOIN manpower AS m ON p.id_manpower = m.id_manpower
+LEFT JOIN lambung AS lm ON p.id_lambung = lm.id_lambung
+WHERE  p.id_lokasi = '$lokasi' AND  p.id_unit = '$unit' 
+")->fetch_array();
+
 
 ?>
 
@@ -44,11 +55,16 @@ $bln = array(
     </p>
     <p align="center">
         <b>
-            <font size="5">Laporan Data Manpower</font> <br>
+            <font size="5">Laporan Data Project</font> <br>
+
             <hr size="2px" color="black">
+
         </b>
     </p>
-
+    <p>
+    Lokasi : <?php echo $names['nama_lokasi'] ?><br>
+    Unit : <?php echo $names['nama_unit'] ?>
+    </p>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -56,30 +72,26 @@ $bln = array(
                     <thead class="">
                         <tr align="center">
                             <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>No Hp</th>
-                            <th>Email</th>
-                            <th>No Rekening</th>
+                            <th>Manpower</th>
+                            <th>Lambung</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                    $data = $koneksi->query("SELECT * FROM project AS p
+                                            LEFT JOIN lokasi AS l ON p.id_lokasi = l.id_lokasi
+                                            LEFT JOIN unit AS u ON p.id_unit = u.id_unit
+                                            LEFT JOIN manpower AS m ON p.id_manpower = m.id_manpower
+                                            LEFT JOIN lambung AS lm ON p.id_lambung = lm.id_lambung
+                                            WHERE  p.id_lokasi = '$lokasi' AND  p.id_unit = '$unit' 
+                                            ");
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nik'] ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_jabatan'] ?></td>
-                                <td><?= $row['no_hp'] ?></td>
-                                <td><?= $row['email'] ?></td>
-                                <td><?= $row['no_rekening'] ?></td>
+                                <td><?= $row['nama_lambung'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>
@@ -110,6 +122,7 @@ $bln = array(
         </h5>
 
     </div>
+
 
 </body>
 

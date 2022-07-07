@@ -4,7 +4,9 @@ include '../../config/koneksi.php';
 
 $no = 1;
 
-
+if (isset($_POST['cetak'])) {
+    $manpower = $_POST['manpower'];
+}
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -19,6 +21,11 @@ $bln = array(
     '11' => 'November',
     '12' => 'Desember'
 );
+$names = $koneksi->query("SELECT * FROM manpower AS m
+LEFT JOIN jabatan as j ON m.id_jabatan = j.id_jabatan
+WHERE  m.id_manpower = '$manpower'
+")->fetch_array();
+
 
 ?>
 
@@ -44,11 +51,16 @@ $bln = array(
     </p>
     <p align="center">
         <b>
-            <font size="5">Laporan Data Manpower</font> <br>
+            <font size="5">Laporan Data Absensi</font> <br>
+
             <hr size="2px" color="black">
+
         </b>
     </p>
-
+    <p>
+        Nama : <?php echo $names['nama'] ?><br>
+        Jabatan : <?php echo $names['nama_jabatan'] ?>
+    </p>
     <div class="row">
         <div class="col-sm-12">
             <div class="card-box table-responsive">
@@ -56,30 +68,25 @@ $bln = array(
                     <thead class="">
                         <tr align="center">
                             <th>No</th>
-                            <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>No Hp</th>
-                            <th>Email</th>
-                            <th>No Rekening</th>
+                            <th>Tanggal Presensi</th>
+                            <th>Absensi</th>
+                            <th>Keterangan</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                    $data = $koneksi->query("SELECT * FROM presensi AS p
+                                            LEFT JOIN manpower AS m ON p.id_manpower = m.id_manpower
+                                            WHERE  m.id_manpower = '$manpower'
+                                            ");
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nik'] ?></td>
-                                <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_jabatan'] ?></td>
-                                <td><?= $row['no_hp'] ?></td>
-                                <td><?= $row['email'] ?></td>
-                                <td><?= $row['no_rekening'] ?></td>
+                                <td><?= tgl_indo($row['tanggal_presensi']) ?></td>
+                                <td><?= $row['absensi'] ?></td>
+                                <td><?= $row['keterangan'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>
@@ -110,6 +117,7 @@ $bln = array(
         </h5>
 
     </div>
+
 
 </body>
 

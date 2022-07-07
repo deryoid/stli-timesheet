@@ -30,12 +30,12 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Manpower</h1>
+                            <h1 class="m-0 text-dark">Project</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Data Master</a></li>
-                                <li class="breadcrumb-item active">Manpower</li>
+                                <li class="breadcrumb-item active">Project</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -71,34 +71,33 @@ include '../../templates/head.php';
                                             <thead class="">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>NIK</th>
-                                                    <th>Nama</th>
-                                                    <th>Jabatan</th>
-                                                    <th>No Hp</th>
-                                                    <th>Email</th>
-                                                    <th>No Rekening</th>
+                                                    <th>Lokasi</th>
+                                                    <th>Unit</th>
+                                                    <th>Manpower</th>
+                                                    <th>Lambung</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                                            $data = $koneksi->query("SELECT * FROM project AS p
+                                            LEFT JOIN lokasi AS l ON p.id_lokasi = l.id_lokasi
+                                            LEFT JOIN unit AS u ON p.id_unit = u.id_unit
+                                            LEFT JOIN manpower AS m ON p.id_manpower = m.id_manpower
+                                            LEFT JOIN lambung AS lm ON p.id_lambung = lm.id_lambung
+                                            ");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
-                                                        <td><?= $row['nik'] ?></td>
+                                                        <td><?= $row['nama_lokasi'] ?></td>
+                                                        <td><?= $row['nama_unit'] ?></td>
                                                         <td><?= $row['nama'] ?></td>
-                                                        <td><?= $row['nama_jabatan'] ?></td>
-                                                        <td><?= $row['no_hp'] ?></td>
-                                                        <td><?= $row['email'] ?></td>
-                                                        <td><?= $row['no_rekening'] ?></td>
+                                                        <td><?= $row['nama_lambung'] ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_manpower'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="hapus?id=<?= $row['id_manpower'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
+                                                            <a href="edit?id=<?= $row['id_project'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href="hapus?id=<?= $row['id_project'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

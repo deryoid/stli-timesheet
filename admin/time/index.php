@@ -30,12 +30,12 @@ include '../../templates/head.php';
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Manpower</h1>
+                            <h1 class="m-0 text-dark">Timesheet</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Data Master</a></li>
-                                <li class="breadcrumb-item active">Manpower</li>
+                                <li class="breadcrumb-item active">Timesheet</li>
                             </ol>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -71,34 +71,39 @@ include '../../templates/head.php';
                                             <thead class="">
                                                 <tr align="center">
                                                     <th>No</th>
-                                                    <th>NIK</th>
+                                                    <th>Tanggal</th>
                                                     <th>Nama</th>
-                                                    <th>Jabatan</th>
-                                                    <th>No Hp</th>
-                                                    <th>Email</th>
-                                                    <th>No Rekening</th>
+                                                    <th>Lambung</th>
+                                                    <th>Shift</th>
+                                                    <th>HM Awal</th>
+                                                    <th>HM Akhir</th>
+                                                    <th>Jumlah</th>
+                                                    <th>Job</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
                                             <?php
                                             $no = 1;
-                                            $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                                            $data = $koneksi->query("SELECT * FROM timesheet AS ts
+                                            LEFT JOIN manpower AS mp ON ts.id_manpower = mp.id_manpower
+                                            LEFT JOIN lambung AS l ON ts.id_lambung = l.id_lambung
+                                            ");
                                             while ($row = $data->fetch_array()) {
                                             ?>
                                                 <tbody style="background-color: white">
                                                     <tr>
                                                         <td align="center"><?= $no++ ?></td>
-                                                        <td><?= $row['nik'] ?></td>
+                                                        <td><?= $row['tanggal_timesheet'] ?></td>
                                                         <td><?= $row['nama'] ?></td>
-                                                        <td><?= $row['nama_jabatan'] ?></td>
-                                                        <td><?= $row['no_hp'] ?></td>
-                                                        <td><?= $row['email'] ?></td>
-                                                        <td><?= $row['no_rekening'] ?></td>
+                                                        <td><?= $row['nama_lambung'] ?></td>
+                                                        <td><?= $row['shift'] ?></td>
+                                                        <td><?= $row['hm_awal'] ?></td>
+                                                        <td><?= $row['hm_akhir'] ?></td>
+                                                        <td><?= $row['jumlah'] ?></td>
+                                                        <td><?= $row['job'] ?></td>
                                                         <td align="center">
-                                                            <a href="edit?id=<?= $row['id_manpower'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="hapus?id=<?= $row['id_manpower'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
+                                                            <a href="edit?id=<?= $row['id_timesheet'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
+                                                            <a href="hapus?id=<?= $row['id_timesheet'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>
                                                         </td>
                                                     </tr>
                                                 </tbody>

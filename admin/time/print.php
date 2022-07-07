@@ -4,7 +4,11 @@ include '../../config/koneksi.php';
 
 $no = 1;
 
-
+if (isset($_POST['cetak'])) {
+    $manpower = $_POST['manpower'];
+    $tgl1 = $_POST['tgl1'];
+    $tgl2 = $_POST['tgl2'];
+}
 $bln = array(
     '01' => 'Januari',
     '02' => 'Februari',
@@ -44,7 +48,9 @@ $bln = array(
     </p>
     <p align="center">
         <b>
-            <font size="5">Laporan Data Manpower</font> <br>
+            <font size="5">Laporan Data Timesheet Perlambung</font> <br>
+            <font size="5">Tanggal <?php echo tgl_indo($tgl1); ?> s/d <?php echo tgl_indo($tgl2); ?></font> <br>
+
             <hr size="2px" color="black">
         </b>
     </p>
@@ -56,33 +62,46 @@ $bln = array(
                     <thead class="">
                         <tr align="center">
                             <th>No</th>
-                            <th>NIK</th>
+                            <th>Tanggal</th>
                             <th>Nama</th>
-                            <th>Jabatan</th>
-                            <th>No Hp</th>
-                            <th>Email</th>
-                            <th>No Rekening</th>
+                            <th>Lambung</th>
+                            <th>Shift</th>
+                            <th>Jumlah</th>
                         </tr>
                     </thead>
                     <?php
                     $no = 1;
-                    $data = $koneksi->query("SELECT * FROM manpower AS mp
-                                            LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
-                                             ORDER BY mp.id_manpower DESC");
+                    $data = $koneksi->query("SELECT * FROM timesheet AS ts
+                                            LEFT JOIN manpower AS mp ON ts.id_manpower = mp.id_manpower
+                                            LEFT JOIN lambung AS l ON ts.id_lambung = l.id_lambung
+                                            WHERE ts.tanggal_timesheet BETWEEN '$tgl1' AND '$tgl2' AND ts.id_manpower = '$manpower'
+                                            ");
+
                     while ($row = $data->fetch_array()) {
                     ?>
                         <tbody style="background-color: white">
                             <tr>
                                 <td align="center"><?= $no++ ?></td>
-                                <td><?= $row['nik'] ?></td>
+                                <td><?= tgl_indo($row['tanggal_timesheet']) ?></td>
                                 <td><?= $row['nama'] ?></td>
-                                <td><?= $row['nama_jabatan'] ?></td>
-                                <td><?= $row['no_hp'] ?></td>
-                                <td><?= $row['email'] ?></td>
-                                <td><?= $row['no_rekening'] ?></td>
+                                <td><?= $row['nama_lambung'] ?></td>
+                                <td><?= $row['shift'] ?></td>
+                                <td align="center"><?= $row['jumlah'] ?></td>
                             </tr>
                         </tbody>
                     <?php } ?>
+                    <tr>
+                        <th colspan="5" align="left"> Total :</th>
+                        <th>
+                            <?php
+                            $hasil = $koneksi->query("SELECT SUM(jumlah) AS total FROM timesheet AS ts
+                            LEFT JOIN manpower AS mp ON ts.id_manpower = mp.id_manpower
+                            LEFT JOIN lambung AS l ON ts.id_lambung = l.id_lambung
+                            WHERE ts.tanggal_timesheet BETWEEN '$tgl1' AND '$tgl2' AND ts.id_manpower = '$manpower'
+                            ")->fetch_array();
+                            echo $hasil['total'];
+                            ?></th>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -110,6 +129,7 @@ $bln = array(
         </h5>
 
     </div>
+
 
 </body>
 
