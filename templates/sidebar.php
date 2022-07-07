@@ -38,7 +38,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="<?= base_url('admin/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -76,7 +76,7 @@
 
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
+            <a class="nav-link">
               <i class="nav-icon fas fa-clone"></i>
               <p>
                 Data Master
@@ -373,69 +373,96 @@
             </li>
 
           <?php } else { ?>
-
             <li class="nav-item">
-              <a href="<?= base_url('admin/manpower/print') ?>" target="blank" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p>Laporan Data Manpower</p>
+              <a href="<?= base_url('homes/menu/index.php') ?>" class="nav-link">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Dashboard
+                </p>
               </a>
             </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('admin/time/printall') ?>" target="blank" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p style="font-size:12px;">Laporan Timesheet <br>Keseluruhan</p>
+            <li class="nav-item has-treeview">
+              <a class="nav-link">
+                <i class="nav-icon fas fa-print"></i>
+                <p>
+                  Laporan
+                  <i class="right fas fa-angle-left"></i>
+                </p>
               </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('admin/manpower/print') ?>" target="blank" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Laporan Data Manpower</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('admin/time/printall') ?>" target="blank" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p style="font-size:12px;">Laporan Timesheet <br>Keseluruhan</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" data-toggle="modal" data-target="#project" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Laporan Data Project</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('admin/pph/print') ?>" target="blank" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p style="font-size:12px;">Laporan Data Pemeriksaan <br> dan Pemeliharaan</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" data-toggle="modal" data-target="#absensi" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Laporan Data Absensi</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="<?= base_url('admin/manpower/printgaji') ?>" target="blank" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p>Laporan Data Gaji</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" data-toggle="modal" data-target="#timesheetlambung" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p style="font-size:12px;">Laporan Timesheet Perlambung</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" data-toggle="modal" data-target="#timesheet" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p style="font-size:12px;">Laporan Timesheet Manpower</p>
+                  </a>
+                </li>
+              </ul>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="" data-toggle="modal" data-target="#slipgaji" class="nav-link">
+                    <i class="fas fa-file nav-icon"></i>
+                    <p style="font-size:12px;">Laporan Slip Gaji Manpower</p>
+                  </a>
+                </li>
+              </ul>
             </li>
 
-            <li class="nav-item">
-              <a href="" data-toggle="modal" data-target="#project" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p>Laporan Data Project</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('admin/pph/print') ?>" target="blank" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p style="font-size:12px;">Laporan Data Pemeriksaan <br> dan Pemeliharaan</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="" data-toggle="modal" data-target="#absensi" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p>Laporan Data Absensi</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="<?= base_url('admin/manpower/printgaji') ?>" target="blank" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p>Laporan Data Gaji</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="" data-toggle="modal" data-target="#timesheetlambung" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p style="font-size:12px;">Laporan Timesheet Perlambung</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="" data-toggle="modal" data-target="#timesheet" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p style="font-size:12px;">Laporan Timesheet Manpower</p>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a href="" data-toggle="modal" data-target="#slipgaji" class="nav-link">
-                <i class="fas fa-file nav-icon"></i>
-                <p style="font-size:12px;">Laporan Slip Gaji Manpower</p>
-              </a>
-            </li>
 
           <?php } ?>
         </ul>

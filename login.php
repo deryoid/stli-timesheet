@@ -131,9 +131,9 @@ if (isset($_POST['login'])) {
 
 
     if ($role == "Administrator") {
-      echo "<script>window.location.replace('admin/');</script>";
+      echo "<script>window.location.replace('admin');</script>";
     } else if ($role != "Administrator") {
-      echo "<script>window.location.replace('homes/');</script>";
+      echo "<script>window.location.replace('homes');</script>";
     } else {
       $_SESSION['pesan'] = 'Username atau Password Tidak Ditemukan';
       echo "<script>window.location.replace('login');</script>";
