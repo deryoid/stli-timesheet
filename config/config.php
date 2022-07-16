@@ -1,6 +1,6 @@
 <?php 
 	function base_url($url = null){
-		$base_url = "http://localhost:8888/stli-timesheet";
+		$base_url = "http://localhost/stli-timesheet";
 		if ($url != null) {
 			return $base_url."/".$url;
 		}else{
