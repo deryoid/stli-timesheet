@@ -74,9 +74,8 @@ include '../../templates/head.php';
                                                     <th>NIK</th>
                                                     <th>Nama</th>
                                                     <th>Jabatan</th>
+                                                    <th>Unit</th>
                                                     <th>No Hp</th>
-                                                    <th>Email</th>
-                                                    <th>No Rekening</th>
                                                     <th>Opsi</th>
                                                 </tr>
                                             </thead>
@@ -84,6 +83,7 @@ include '../../templates/head.php';
                                             $no = 1;
                                             $data = $koneksi->query("SELECT * FROM manpower AS mp
                                             LEFT JOIN jabatan AS j ON mp.id_jabatan = j.id_jabatan
+                                            LEFT JOIN unit AS u ON mp.id_unit = u.id_unit
                                              ORDER BY mp.id_manpower DESC");
                                             while ($row = $data->fetch_array()) {
                                             ?>
@@ -93,9 +93,8 @@ include '../../templates/head.php';
                                                         <td><?= $row['nik'] ?></td>
                                                         <td><?= $row['nama'] ?></td>
                                                         <td><?= $row['nama_jabatan'] ?></td>
+                                                        <td><?= $row['nama_unit'] ?></td>
                                                         <td><?= $row['no_hp'] ?></td>
-                                                        <td><?= $row['email'] ?></td>
-                                                        <td><?= $row['no_rekening'] ?></td>
                                                         <td align="center">
                                                             <a href="edit?id=<?= $row['id_manpower'] ?>" class="btn btn-success btn-sm" title="Edit"><i class="fa fa-edit"></i></a>
                                                             <a href="hapus?id=<?= $row['id_manpower'] ?>" class="btn btn-danger btn-sm alert-hapus" title="Hapus"><i class="fa fa-trash"></i></a>

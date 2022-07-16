@@ -93,6 +93,21 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">unit</label>
+                                            <div class="col-sm-10">
+                                                <select class="form control select2" name="id_unit" data-placeholder="Pilih" style="width: 100%;" required>
+                                                    <option value=""></option>
+                                                    <?php
+                                                    $unit = $koneksi->query("SELECT * FROM unit ORDER BY id_unit DESC");
+                                                    foreach ($unit as $item) {
+                                                    ?>
+                                                        <option value="<?= $item['id_unit'] ?>" <?= $row['id_unit'] == $item['id_unit'] ? "selected" : "" ?>> <?= $item['nama_unit'] ?></option>
+
+                                                    <?php } ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Nomor Hp</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" name="no_hp" value="<?= $row['no_hp']; ?>">
@@ -153,6 +168,7 @@ include '../../templates/head.php';
         $nik         = $_POST['nik'];
         $nama         = $_POST['nama'];
         $id_jabatan         = $_POST['id_jabatan'];
+        $id_unit         = $_POST['id_unit'];
         $no_hp         = $_POST['no_hp'];
         $email         = $_POST['email'];
         $no_rekening         = $_POST['no_rekening'];
@@ -161,6 +177,7 @@ include '../../templates/head.php';
                             nik = '$nik',
                             nama = '$nama',
                             id_jabatan = '$id_jabatan',
+                            id_unit = '$id_unit',
                             no_hp = '$no_hp',
                             email = '$email',
                             no_rekening = '$no_rekening'

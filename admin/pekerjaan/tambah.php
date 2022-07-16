@@ -76,6 +76,7 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
 
+
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Total Hadir</label>
                                             <div class="col-sm-10">
@@ -83,9 +84,27 @@ include '../../templates/head.php';
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">HM AWAL</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="hm_awal" name="hm_awal">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">HM AKHIR</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="hm_akhir" name="hm_akhir">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-2 col-form-label">JAM NO RENT</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="no_rent" name="no_rent">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label for="" class="col-sm-2 col-form-label">Total HM</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" name="tot_hm">
+                                                <input type="text" class="form-control" name="tot_hm" id="tot_hm">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -149,12 +168,33 @@ include '../../templates/head.php';
 
     <!-- jQuery -->
     <?php include_once "../../templates/script.php"; ?>
+    <script>
+        $("#hm_awal, #hm_akhir, #no_rent").keyup(function() {
+            var hm_awal = $("#hm_awal").val();
+            var hm_akhir = $("#hm_akhir").val();
+            var no_rent = $("#no_rent").val();
 
+            if (hm_awal && hm_akhir && no_rent && tot_hm) {
+                var total = (parseInt(hm_akhir) - parseInt(hm_awal)) + parseInt(no_rent);
+                if (total > 11) {
+                    alert('Total HM Maks 11..!')
+                    $("#tot_hm").val(0);
+                } else {
+                    $("#tot_hm").val(total);
+                }
+            } else {
+                $("#tot_hm").val(0);
+            }
+        });
+    </script>
 
     <?php
     if (isset($_POST['submit'])) {
         $id_manpower         = $_POST['id_manpower'];
         $tot_hadir         = $_POST['tot_hadir'];
+        $hm_awal         = $_POST['hm_awal'];
+        $hm_akhir         = $_POST['hm_akhir'];
+        $no_rent         = $_POST['no_rent'];
         $tot_hm         = $_POST['tot_hm'];
         $jum_alpa         = $_POST['jum_alpa'];
         $jum_ijin         = $_POST['jum_ijin'];
@@ -165,6 +205,9 @@ include '../../templates/head.php';
             NULL,
             '$id_manpower',
             '$tot_hadir',
+            '$hm_awal',
+            '$hm_akhir',
+            '$no_rent',
             '$tot_hm',
             '$jum_alpa',
             '$jum_ijin',
