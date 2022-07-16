@@ -1,16 +1,15 @@
-<!-- MODAL Timesheet -->
-<div id="timesheet" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+<!-- Modal Time sheet -->
+<div class="modal fade" id="timesheet" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-        <h4 class="modal-title">Laporan Timesheet</h4>
+        <h5 class="modal-title" id="modalSayaLabel">Laporan Timesheet</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-
-        <!-- tanggal -->
-
-        <form method="POST" target="blank" action="<?= base_url('time/print.php') ?>">
+        <form method="POST" target="blank" action="<?= base_url('admin/time/print.php') ?>">
           <div class="row">
             <div class="col-md-12">
               <label> Nama</label>
@@ -44,31 +43,29 @@
             </div>
           </div>
         </form>
-        <!-- end tanggal -->
-
-
-      </div><!-- modal body -->
-
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MODAL PRIOJECT -->
-<div id="project" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+<!-- Modal Time sheet -->
+
+
+<!-- Modal Project -->
+<div class="modal fade" id="project" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-        <h4 class="modal-title">Laporan PROJECT</h4>
+        <h5 class="modal-title" id="modalSayaLabel">Laporan Project</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-
-        <!-- tanggal -->
-
-        <form method="POST" target="blank" action="<?= base_url('project/print') ?>">
+        <form method="POST" target="blank" action="<?= base_url('admin/project/print') ?>">
           <div class="row">
             <div class="col-md-12">
               <label> Lokasi</label>
@@ -107,33 +104,28 @@
               <button type="submit" name="cetak" class="btn btn-info waves-effect waves-light m-l-10 btn-md"><i class="mdi mdi-printer"></i> Cetak</button>
             </div>
           </div>
-      </form>
-      <!-- end tanggal -->
-
-
-    </div><!-- modal body -->
-
-    <div class="modal-footer">
-      <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
     </div>
   </div>
 </div>
-</div>
+<!-- Modal Project -->
 
-
-<!-- MODAL ABsensi -->
-<div id="absensi" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+<!-- Modal Absensi -->
+<div class="modal fade" id="absensi" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-        <h4 class="modal-title">Laporan Absensi</h4>
+        <h5 class="modal-title" id="modalSayaLabel">Laporan Absensi</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-
-        <!-- tanggal -->
-
-        <form method="POST" target="blank" action="<?= base_url('presensi/print') ?>">
+        <form method="POST" target="blank" action="<?= base_url('admin/presensi/print') ?>">
           <div class="row">
             <div class="col-md-12">
               <label> Nama</label>
@@ -160,31 +152,27 @@
             </div>
           </div>
         </form>
-        <!-- end tanggal -->
-
-
-      </div><!-- modal body -->
-
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
 </div>
+<!-- Modal Absensi -->
 
-<!-- MODAL Timesheet -->
-<div id="timesheetlambung" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+<!-- Modal Timesheet Lambung -->
+<div class="modal fade" id="timesheetlambung" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-        <h4 class="modal-title">Laporan Timesheet Per Lambung</h4>
+        <h5 class="modal-title" id="modalSayaLabel">Laporan Timesheet Lambung</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-
-        <!-- tanggal -->
-
-        <form method="POST" target="blank" action="<?= base_url('time/printlambung.php') ?>">
+        <form method="POST" target="blank" action="<?= base_url('admin/time/printlambung.php') ?>">
           <div class="row">
             <div class="col-md-12">
               <label> Lambung</label>
@@ -218,32 +206,27 @@
             </div>
           </div>
         </form>
-        <!-- end tanggal -->
-
-
-      </div><!-- modal body -->
-
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
 </div>
+<!-- Modal Timesheet Lambung -->
 
-
-<!-- MODAL ABsensi -->
-<div id="slipgaji" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-  <div class="modal-dialog">
+<!-- Modal Slip Gaji Manpower -->
+<div class="modal fade" id="slipgaji" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-        <h4 class="modal-title">Laporan Slip Gaji Manpower</h4>
+        <h5 class="modal-title" id="modalSayaLabel">Laporan Slip Gaji Manpower</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
       <div class="modal-body">
-
-        <!-- tanggal -->
-
-        <form method="POST" target="blank" action="<?= base_url('gaji/print') ?>">
+        <form method="POST" target="blank" action="<?= base_url('admin/gaji/print') ?>">
           <div class="row">
             <div class="col-md-12">
               <label> Nama</label>
@@ -269,14 +252,25 @@
             </div>
           </div>
         </form>
-        <!-- end tanggal -->
-
-
-      </div><!-- modal body -->
-
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal"><i class="mdi mdi-close"></i> Batal</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
       </div>
     </div>
   </div>
 </div>
+<!-- Modal Slip Gaji Manpower -->
+Footer
+© 2022 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
