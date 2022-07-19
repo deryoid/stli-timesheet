@@ -4,7 +4,8 @@
   <div class="float-right d-none d-sm-inline-block">
     <b>Version</b> 1.0.1
   </div>
-</footer>
+</footer><!-- Modal Time sheet -->
+
 
 <!-- Modal Time sheet -->
 <div class="modal fade" id="timesheet" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">
@@ -58,9 +59,7 @@
     </div>
   </div>
 </div>
-
 <!-- Modal Time sheet -->
-
 
 <!-- Modal Project -->
 <div class="modal fade" id="project" tabindex="-1" role="dialog" aria-labelledby="modalSayaLabel" aria-hidden="true">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Waktu pembuatan: 07 Jul 2022 pada 19.55
+-- Waktu pembuatan: 19 Jul 2022 pada 06.08
 -- Versi server: 5.7.34
 -- Versi PHP: 7.4.21
 
@@ -44,7 +44,7 @@ CREATE TABLE `gaji` (
 --
 
 INSERT INTO `gaji` (`id_gaji`, `id_pekerjaan`, `tunj_timesheet`, `hm`, `pot_absensi`, `bpjs_tk`, `bpjs_kes`, `pot_admin`, `mcu`) VALUES
-(1, 2, '3000000', '100', '1000000', '37500', '37500', '2000000', '100000');
+(1, 4, '3000000', '100', '1000000', '37500', '37500', '2000000', '100000');
 
 -- --------------------------------------------------------
 
@@ -112,6 +112,7 @@ CREATE TABLE `manpower` (
   `nik` varchar(35) NOT NULL,
   `nama` varchar(75) NOT NULL,
   `id_jabatan` int(11) NOT NULL,
+  `id_unit` int(11) NOT NULL,
   `no_hp` varchar(16) NOT NULL,
   `email` varchar(75) NOT NULL,
   `no_rekening` varchar(26) NOT NULL
@@ -121,9 +122,10 @@ CREATE TABLE `manpower` (
 -- Dumping data untuk tabel `manpower`
 --
 
-INSERT INTO `manpower` (`id_manpower`, `nik`, `nama`, `id_jabatan`, `no_hp`, `email`, `no_rekening`) VALUES
-(3, '637123993299910', 'Marlina', 2, '089570110731323', 'marlina@gmail.com', '12312312312312'),
-(4, '6346011107960002', 'Nugraha', 2, '0895701121222', 'nugrah@gmail.com', '123123129988');
+INSERT INTO `manpower` (`id_manpower`, `nik`, `nama`, `id_jabatan`, `id_unit`, `no_hp`, `email`, `no_rekening`) VALUES
+(3, '637123993299910', 'Marlina', 2, 1, '089570110731323', 'marlina@gmail.com', '12312312312312'),
+(4, '6346011107960002', 'Nugraha', 2, 1, '0895701121222', 'nugrah@gmail.com', '123123129988'),
+(5, '6371022210960004', 'Abdillah', 2, 1, '0895701121222', 'abdi@gmail.com', '6135718293');
 
 -- --------------------------------------------------------
 
@@ -135,6 +137,9 @@ CREATE TABLE `pekerjaan` (
   `id_pekerjaan` int(11) NOT NULL,
   `id_manpower` int(11) NOT NULL,
   `tot_hadir` varchar(25) NOT NULL,
+  `hm_awal` varchar(35) NOT NULL,
+  `hm_akhir` varchar(35) NOT NULL,
+  `no_rent` varchar(50) NOT NULL,
   `tot_hm` varchar(25) NOT NULL,
   `jum_alpa` varchar(25) NOT NULL,
   `jum_ijin` varchar(25) NOT NULL,
@@ -146,8 +151,8 @@ CREATE TABLE `pekerjaan` (
 -- Dumping data untuk tabel `pekerjaan`
 --
 
-INSERT INTO `pekerjaan` (`id_pekerjaan`, `id_manpower`, `tot_hadir`, `tot_hm`, `jum_alpa`, `jum_ijin`, `jum_hadir`, `tanggal_pekerjaan`) VALUES
-(2, 3, '1', '1', '1', '1', '1', '2022-07-06');
+INSERT INTO `pekerjaan` (`id_pekerjaan`, `id_manpower`, `tot_hadir`, `hm_awal`, `hm_akhir`, `no_rent`, `tot_hm`, `jum_alpa`, `jum_ijin`, `jum_hadir`, `tanggal_pekerjaan`) VALUES
+(4, 5, '18', '5110', '5112', '2', '13', '5', '5', '2', '2022-07-16');
 
 -- --------------------------------------------------------
 
@@ -313,7 +318,9 @@ ALTER TABLE `lokasi`
 -- Indeks untuk tabel `manpower`
 --
 ALTER TABLE `manpower`
-  ADD PRIMARY KEY (`id_manpower`);
+  ADD PRIMARY KEY (`id_manpower`),
+  ADD KEY `id_unit` (`id_unit`),
+  ADD KEY `id_jabatan` (`id_jabatan`);
 
 --
 -- Indeks untuk tabel `pekerjaan`
@@ -395,13 +402,13 @@ ALTER TABLE `lokasi`
 -- AUTO_INCREMENT untuk tabel `manpower`
 --
 ALTER TABLE `manpower`
-  MODIFY `id_manpower` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_manpower` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `pekerjaan`
 --
 ALTER TABLE `pekerjaan`
-  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `pph`

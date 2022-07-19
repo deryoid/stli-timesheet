@@ -30,13 +30,13 @@
 
 
 
-    <?php if ($_SESSION['role'] == "Administrator") { ?>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+        with font-awesome or any other icon font library -->
+        <?php if ($_SESSION['role'] == "Administrator") { ?>
           <li class="nav-item">
             <a href="<?= base_url('admin/index') ?>" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
@@ -240,20 +240,8 @@
           </li>
 
 
+        <?php } elseif ($_SESSION['role'] == "HO/HOD") { ?>
 
-        </ul>
-      </nav>
-      <!-- /.sidebar-menu -->
-
-
-
-    <?php } elseif ($_SESSION['role'] == "HO/HOD") { ?>
-
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="<?= base_url('homes/') ?>" class="nav-link">
               <i class="nav-icon fas fa-home"></i>
@@ -289,6 +277,7 @@
               </p>
             </a>
           </li>
+
           <li class="nav-item has-treeview active">
             <a class="nav-link">
               <i class="nav-icon fas fa-print"></i>
@@ -372,108 +361,104 @@
           </li>
 
         <?php } elseif ($_SESSION['role'] == "OPR/DRIVER") { ?>
-          <!-- Sidebar Menu -->
-          <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
-              <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-              
+
+
+          <li class="nav-item">
+            <a href="<?= base_url('homes/menu/index.php') ?>" class="nav-link">
+              <i class="nav-icon fas fa-home"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview active">
+            <a class="nav-link">
+              <i class="nav-icon fas fa-print"></i>
+              <p>
+                Laporan
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?= base_url('homes/menu/index.php') ?>" class="nav-link">
-                  <i class="nav-icon fas fa-home"></i>
-                  <p>
-                    Dashboard
-                  </p>
+                <a href="<?= base_url('homes/manpower/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Manpower</p>
                 </a>
               </li>
-              <li class="nav-item has-treeview">
-                <a class="nav-link">
-                  <i class="nav-icon fas fa-print"></i>
-                  <p>
-                    Laporan
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?= base_url('admin/manpower/print') ?>" target="blank" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p>Laporan Data Manpower</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?= base_url('admin/time/printall') ?>" target="blank" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p style="font-size:12px;">Laporan Timesheet <br>Keseluruhan</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" data-toggle="modal" data-target="#project" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p>Laporan Data Project</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?= base_url('admin/pph/print') ?>" target="blank" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p style="font-size:12px;">Laporan Data Pemeriksaan <br> dan Pemeliharaan</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" data-toggle="modal" data-target="#absensi" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p>Laporan Data Absensi</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="<?= base_url('admin/manpower/printgaji') ?>" target="blank" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p>Laporan Data Gaji</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" data-toggle="modal" data-target="#timesheetlambung" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p style="font-size:12px;">Laporan Timesheet Perlambung</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" data-toggle="modal" data-target="#timesheet" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p style="font-size:12px;">Laporan Timesheet Manpower</p>
-                    </a>
-                  </li>
-                </ul>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" data-toggle="modal" data-target="#slipgaji" class="nav-link">
-                      <i class="fas fa-file nav-icon"></i>
-                      <p style="font-size:12px;">Laporan Slip Gaji Manpower</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-
-
-            <?php } ?>
             </ul>
-          </nav>
-          <!-- /.sidebar-menu -->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('homes/time/printall') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet <br>Keseluruhan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#project" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Project</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('homes/pph/print') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Data Pemeriksaan <br> dan Pemeliharaan</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#absensi" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Absensi</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= base_url('homes/manpower/printgaji') ?>" target="blank" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p>Laporan Data Gaji</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#timesheetlambung" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet Perlambung</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#timesheet" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Timesheet Manpower</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="" data-toggle="modal" data-target="#slipgaji" class="nav-link">
+                  <i class="fas fa-file nav-icon"></i>
+                  <p style="font-size:12px;">Laporan Slip Gaji Manpower</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+        <?php } ?>
+      </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
   </div>
   <!-- /.sidebar -->
-include
+
 </aside>

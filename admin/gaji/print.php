@@ -32,7 +32,7 @@ WHERE  g.id_pekerjaan = '$pekerjaan'
 ?>
 
 <script type="text/javascript">
-    // window.print();
+    window.print();
 </script>
 
 <!DOCTYPE html>
